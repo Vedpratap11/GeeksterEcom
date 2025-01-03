@@ -4,7 +4,7 @@ import instance from '../axiosConfig'
 
 function Brand() {
   const { brand } = useParams()
-  const [products, setProducts] = useState()
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     if (brand) {
@@ -13,11 +13,12 @@ function Brand() {
   }, [brand])
 
   async function fetchBrandsProducts() {
-    const response = await instance(`/api/product ? brand === ${brand}`)
+    const response = await instance(`/api/product?brand=${brand}`)
     setProducts(response.data)
     console.log(response.data)
   }
 
+  console.log(products)
   return (
     <div>
       {
